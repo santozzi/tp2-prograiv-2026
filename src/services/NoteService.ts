@@ -25,7 +25,11 @@ export class NoteServiceImpl implements NoteService {
     // es true, además deben llamar a notify(nota) del módulo
     // notificationService. En el test, simulen ese módulo completo con
     // vi.mock y verifiquen la llamada con toHaveBeenCalledWith.
-    throw new Error('createNote: no implementado (Ejercicio 1)');
+    const nota = this.repo.create(data);
+    if (data.pinned) {
+      notify(nota);
+    }
+    return nota;
   }
 
   listNotes(): Note[] {
@@ -37,13 +41,12 @@ export class NoteServiceImpl implements NoteService {
 
   getNote(id: number): Note | undefined {
     // 🔴🟢 EJERCICIO 3: ciclo completo (test + implementación).
-    throw new Error('getNote: no implementado (Ejercicio 3)');
+    return this.repo.findById(id);
   }
 
   updateNote(id: number, patch: NotePatch): Note | undefined {
-    // 🔴🟢 EJERCICIO 4: ciclo completo. Es una actualización PARCIAL:
-    // si patch solo trae `title`, `content` no debe cambiar (y viceversa).
-    throw new Error('updateNote: no implementado (Ejercicio 4)');
+    
+    return this.repo.update(id, patch);
   }
 
   deleteNote(id: number): boolean {
