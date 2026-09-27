@@ -20,8 +20,8 @@ describe('NoteService - notify (Ejercicio 6)', () => {
 
   it('notifica con la nota creada cuando pinned es true', () => {
     const note = service.createNote({
-      title: 'Entrega del práctico',
-      content: 'Revisar los tests',
+      title: 'Nota con pin',
+      content: 'Con prioridad',
       pinned: true
     });
 
