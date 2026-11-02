@@ -30,4 +30,22 @@ describe('Note Routes', () => {
       expect(getResponse.body.content).toEqual(newNote.content);
     });
   });
+
+  describe('DELETE/notes/:id - Ejercicio 5', () => {
+    it('Delete nota por id', async () => {
+      const notaNueva: NewNote = { title: 'TITULO', content: 'CONTENIDO' };
+      const createRespuesta = await request(app).post('/notes').send(notaNueva);
+      const id = createRespuesta.body.id;
+
+      const respuesta = await request(app).delete(`/notes/${id}`);
+
+      expect(respuesta.statusCode).toBe(204);
+    });
+
+    it('DELETE: nota con id inexistente retorna 404', async () =>{
+      const respuesta = (await request(app).delete('/notes/100'))
+      expect(respuesta.statusCode).toBe(404);
+      expect(respuesta.body).toHaveProperty('error', 'NotFound');
+    });
+  });
 });
