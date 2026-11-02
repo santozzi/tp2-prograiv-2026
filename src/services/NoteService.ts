@@ -37,7 +37,7 @@ export class NoteServiceImpl implements NoteService {
   updateNote(id: number, patch: NotePatch): Note | undefined {
     // 🔴🟢 EJERCICIO 4: ciclo completo. Es una actualización PARCIAL:
     // si patch solo trae `title`, `content` no debe cambiar (y viceversa).
-    throw new Error('updateNote: no implementado (Ejercicio 4)');
+    return this.repo.update(id, patch);
   }
 
   deleteNote(id: number): boolean {
